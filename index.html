@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sensi Free Fire</title>
+    <title>Sensi Free Fire PRO</title>
 
     <style>
         body {
-            background-color: #0f172a;
+            background: #0f172a;
             color: white;
             text-align: center;
             font-family: Arial;
         }
 
-        select {
+        select, button {
             padding: 10px;
             margin: 10px;
+            border-radius: 8px;
         }
 
         button {
-            padding: 10px;
             background: lime;
             border: none;
             cursor: pointer;
@@ -32,69 +32,63 @@
 </head>
 <body>
 
-<h1>🔥 Sensi Free Fire 🔥</h1>
-<p>Escolha seu celular:</p>
+<h1>🔥 SENSI FREE FIRE 🔥</h1>
 
-<select id="celular">
-    <option>Samsung A12</option>
-    <option>Samsung A32</option>
-    <option>Xiaomi Redmi Note 8</option>
-    <option>Xiaomi Redmi Note 11</option>
-    <option>Motorola G20</option>
-    <option>Motorola G60</option>
-    <option>iPhone 11</option>
-    <option>iPhone 13</option>
-    <option>LG K10</option>
-    <option>LG K22</option>
+<p>Escolha a marca:</p>
+<select id="marca" onchange="carregarModelos()">
+    <option value="">-- Escolha --</option>
+    <option>Samsung</option>
+    <option>Xiaomi</option>
+    <option>Motorola</option>
+    <option>LG</option>
+    <option>iPhone</option>
 </select>
 
 <br>
 
-<button onclick="mostrarSensi()">Ver Sensi</button>
+<p>Escolha o modelo:</p>
+<select id="modelo"></select>
+
+<br>
+
+<button onclick="mostrarSensi()">Ver Sensi 🔥</button>
 
 <div id="resultado"></div>
 
 <script>
-function mostrarSensi() {
-    let celular = document.getElementById("celular").value;
-    let resultado = document.getElementById("resultado");
 
-    if (celular === "Samsung A12") {
-        resultado.innerHTML = "Geral: 90<br>Red Dot: 85<br>Mira 2x: 75<br>Mira 4x: 65";
-    }
-    else if (celular === "Samsung A32") {
-        resultado.innerHTML = "Geral: 95<br>Red Dot: 90<br>Mira 2x: 80<br>Mira 4x: 70";
-    }
-    else if (celular === "Xiaomi Redmi Note 8") {
-        resultado.innerHTML = "Geral: 92<br>Red Dot: 87<br>Mira 2x: 77<br>Mira 4x: 67";
-    }
-    else if (celular === "Xiaomi Redmi Note 11") {
-        resultado.innerHTML = "Geral: 97<br>Red Dot: 92<br>Mira 2x: 82<br>Mira 4x: 72";
-    }
-    else if (celular === "Motorola G20") {
-        resultado.innerHTML = "Geral: 85<br>Red Dot: 80<br>Mira 2x: 70<br>Mira 4x: 60";
-    }
-    else if (celular === "Motorola G60") {
-        resultado.innerHTML = "Geral: 93<br>Red Dot: 88<br>Mira 2x: 78<br>Mira 4x: 68";
-    }
-    else if (celular === "iPhone 11") {
-        resultado.innerHTML = "Geral: 100<br>Red Dot: 95<br>Mira 2x: 85<br>Mira 4x: 75";
-    }
-    else if (celular === "iPhone 13") {
-        resultado.innerHTML = "Geral: 100<br>Red Dot: 97<br>Mira 2x: 87<br>Mira 4x: 77";
-    }
-    else if (celular === "LG K10") {
-        resultado.innerHTML = "Geral: 88<br>Red Dot: 83<br>Mira 2x: 73<br>Mira 4x: 63";
-    }
-    else if (celular === "LG K22") {
-        resultado.innerHTML = "Geral: 89<br>Red Dot: 84<br>Mira 2x: 74<br>Mira 4x: 64";
+let dados = {
+    Samsung: ["A10","A12","A20","A32","A50","S20","S21","S22","S23"],
+    Xiaomi: ["Redmi 7","Redmi Note 8","Redmi Note 9","Redmi Note 10","Redmi Note 11","Poco X3","Poco X5"],
+    Motorola: ["G20","G30","G40","G60","Edge 20"],
+    LG: ["K10","K22","K40","Velvet"],
+    iPhone: ["8","X","11","12","13","14","15"]
+};
+
+function carregarModelos() {
+    let marca = document.getElementById("marca").value;
+    let modelo = document.getElementById("modelo");
+
+    modelo.innerHTML = "";
+
+    if (marca in dados) {
+        dados[marca].forEach(m => {
+            let option = document.createElement("option");
+            option.text = marca + " " + m;
+            modelo.add(option);
+        });
     }
 }
+
+function mostrarSensi() {
+    let modelo = document.getElementById("modelo").value;
+
+    document.getElementById("resultado").innerHTML =
+        "Sensi para: " + modelo + "<br><br>" +
+        "Geral: 100<br>Red Dot: 90<br>Mira 2x: 80<br>Mira 4x: 70";
+}
+
 </script>
 
 </body>
-
-<img src="logo.png" width="300" style="display:block; margin:auto; margin-top:20px;">
-
 </html>
-
